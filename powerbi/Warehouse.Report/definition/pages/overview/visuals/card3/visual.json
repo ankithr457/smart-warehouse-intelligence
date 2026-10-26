@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "card3",
+  "position": {
+    "x": 954,
+    "y": 20,
+    "z": 0,
+    "height": 110,
+    "width": 292,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "warehouse_daily"
+                    }
+                  },
+                  "Property": "Total Demand"
+                }
+              },
+              "queryRef": "warehouse_daily.Total Demand",
+              "nativeQueryRef": "Total Demand"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Total Demand'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

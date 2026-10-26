@@ -1,10 +1,16 @@
-// Import reports/warehouse_daily.csv from running python src/run.py
-// Table name: warehouse_daily
+// Measures used by the embedded semantic model.
+
 Observations = COUNTROWS(warehouse_daily)
-Total Demand Units = SUM(warehouse_daily[demand])
-Total Shipped Units = SUM(warehouse_daily[shipped])
-Demand Fulfillment % = DIVIDE([Total Shipped Units], [Total Demand Units])
-Discrepancy Observations = CALCULATE(COUNTROWS(warehouse_daily), warehouse_daily[variance] <> 0)
-Discrepancy % = DIVIDE([Discrepancy Observations], [Observations])
-// ERP and WMS stock are snapshot quantities. Never sum across dates as inventory balance.
+
+Discrepancy Records = COUNTROWS(FILTER(warehouse_daily, warehouse_daily[variance] <> 0))
+
+Demand Fulfillment = DIVIDE(SUM(warehouse_daily[shipped]), SUM(warehouse_daily[demand]), 0)
+
+Total Demand = SUM(warehouse_daily[demand])
+
+Total Shipped = SUM(warehouse_daily[shipped])
+
+Reorder Alerts = CALCULATE(COUNTROWS(replenishment_recommendations), replenishment_recommendations[reorder_alert] = TRUE())
+
+Proposed Units = SUM(replenishment_recommendations[recommended_order_qty])
 

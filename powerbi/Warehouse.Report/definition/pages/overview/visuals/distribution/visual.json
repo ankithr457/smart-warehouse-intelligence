@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "distribution",
+  "position": {
+    "x": 650,
+    "y": 250,
+    "z": 0,
+    "height": 420,
+    "width": 600,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "warehouse_daily"
+                    }
+                  },
+                  "Property": "day"
+                }
+              },
+              "queryRef": "warehouse_daily.day",
+              "nativeQueryRef": "day"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "warehouse_daily"
+                    }
+                  },
+                  "Property": "Total Demand"
+                }
+              },
+              "queryRef": "warehouse_daily.Total Demand",
+              "nativeQueryRef": "Total Demand"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Daily demand'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

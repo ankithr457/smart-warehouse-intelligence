@@ -1,0 +1,157 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "detail_table",
+  "position": {
+    "x": 24,
+    "y": 150,
+    "z": 0,
+    "height": 530,
+    "width": 1230,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "replenishment_recommendations"
+                    }
+                  },
+                  "Property": "warehouse"
+                }
+              },
+              "queryRef": "replenishment_recommendations.warehouse",
+              "nativeQueryRef": "warehouse"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "replenishment_recommendations"
+                    }
+                  },
+                  "Property": "sku"
+                }
+              },
+              "queryRef": "replenishment_recommendations.sku",
+              "nativeQueryRef": "sku"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "replenishment_recommendations"
+                    }
+                  },
+                  "Property": "wms_stock"
+                }
+              },
+              "queryRef": "replenishment_recommendations.wms_stock",
+              "nativeQueryRef": "wms_stock"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "replenishment_recommendations"
+                    }
+                  },
+                  "Property": "reorder_point"
+                }
+              },
+              "queryRef": "replenishment_recommendations.reorder_point",
+              "nativeQueryRef": "reorder_point"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "replenishment_recommendations"
+                    }
+                  },
+                  "Property": "target_stock"
+                }
+              },
+              "queryRef": "replenishment_recommendations.target_stock",
+              "nativeQueryRef": "target_stock"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "replenishment_recommendations"
+                    }
+                  },
+                  "Property": "reorder_alert"
+                }
+              },
+              "queryRef": "replenishment_recommendations.reorder_alert",
+              "nativeQueryRef": "reorder_alert"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "replenishment_recommendations"
+                    }
+                  },
+                  "Property": "recommended_order_qty"
+                }
+              },
+              "queryRef": "replenishment_recommendations.recommended_order_qty",
+              "nativeQueryRef": "recommended_order_qty"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "replenishment_recommendations"
+                    }
+                  },
+                  "Property": "stock_variance"
+                }
+              },
+              "queryRef": "replenishment_recommendations.stock_variance",
+              "nativeQueryRef": "stock_variance"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Replenishment proposals'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

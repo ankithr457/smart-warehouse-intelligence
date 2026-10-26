@@ -1,0 +1,27 @@
+{
+  "release": "2",
+  "date": "2026-10-26",
+  "python_business_tests": "passed",
+  "browser": {
+    "engine": "Chromium via Playwright",
+    "checks": [
+      "warehouse filter",
+      "unmatched search",
+      "filtered CSV download",
+      "390px viewport overflow"
+    ],
+    "result": "passed"
+  },
+  "powerbi": {
+    "schema_documents": 18,
+    "json_schema": "passed",
+    "field_references": "passed",
+    "embedded_data_identity": "passed",
+    "desktop_render_and_dax": "not executed"
+  },
+  "pdf": {
+    "pages": 14,
+    "visual_review": "passed: all 14 pages rendered and inspected"
+  },
+  "automated_tests": 10
+}

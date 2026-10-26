@@ -1,15 +1,12 @@
-# KNIME workflow implementation guide
+# KNIME reproduction specification
 
-This is an implementation guide, **not an executable .knwf file**.
+The Python implementation is the executable reference. This document specifies an equivalent KNIME flow. A native KNWF export is not included.
 
-1. Run `python src/run.py` to generate `reports/warehouse_daily.csv`.
-2. CSV Reader: load the CSV. Verify numeric types for `day`, `demand`, `shipped`, `erp_stock`, `wms_stock`, `variance`.
-3. Rule Engine: flag discrepancies with `$variance$ != 0 => "Investigate"`, `TRUE => "Matched"`.
-4. GroupBy: group by `warehouse`, `sku`; sum demand and shipped, count discrepancy flags.
-5. Math Formula: calculate `fulfillment_rate = shipped / demand`, guarding against zero demand.
-6. Row Filter: retain groups with discrepancy count > 0.
-7. CSV Writer: export discrepancy register.
-8. Add a Line Plot for daily demand and a Bar Chart for discrepancies by warehouse.
+## Reconciliation
+CSV Reader (`reports/warehouse_daily.csv`) -> Rule Engine (`$variance$ != 0 => TRUE`) -> Row Filter -> CSV Writer. Group by warehouse to compare discrepancy counts. Sum demand and shipped units to calculate fulfillment. Never sum stock snapshots across dates.
 
-Validation: reconcile KNIME counts against Python output, and document any difference. Do not claim this guide as an exported KNIME workflow.
+## Replenishment
+Sort by warehouse, SKU and day. Retain the latest 28 rows per warehouse-SKU. Calculate demand mean and sample standard deviation. Join the latest WMS stock. Apply the reorder point, target stock and trigger definitions in `docs/methodology.md`. Export one proposal per warehouse-SKU.
 
+## Acceptance values
+Default dataset: 5,760 observations, 2,245 discrepancy rows, 48 proposals, two alerts and 469 proposed units. Compare the output to the committed Python CSVs before using the workflow for further analysis.

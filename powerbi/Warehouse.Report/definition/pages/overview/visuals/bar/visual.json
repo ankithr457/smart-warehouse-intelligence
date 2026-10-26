@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "bar",
+  "position": {
+    "x": 24,
+    "y": 250,
+    "z": 0,
+    "height": 420,
+    "width": 600,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "warehouse_daily"
+                    }
+                  },
+                  "Property": "warehouse"
+                }
+              },
+              "queryRef": "warehouse_daily.warehouse",
+              "nativeQueryRef": "warehouse"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "warehouse_daily"
+                    }
+                  },
+                  "Property": "Discrepancy Records"
+                }
+              },
+              "queryRef": "warehouse_daily.Discrepancy Records",
+              "nativeQueryRef": "Discrepancy Records"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Discrepancies by warehouse'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

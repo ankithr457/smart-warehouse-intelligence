@@ -1,0 +1,86 @@
+{
+  "demand": 69633,
+  "shipped": 69327,
+  "alerts": [
+    {
+      "warehouse": "Germany",
+      "sku": "SKU002",
+      "as_of_day": 120,
+      "history_days": 28,
+      "mean_daily_demand": 11.714,
+      "sample_std": 6.423,
+      "wms_stock": 96,
+      "reorder_point": 111,
+      "target_stock": 275,
+      "reorder_alert": true,
+      "recommended_order_qty": 179,
+      "stock_variance": 0
+    },
+    {
+      "warehouse": "Germany",
+      "sku": "SKU005",
+      "as_of_day": 120,
+      "history_days": 28,
+      "mean_daily_demand": 12.429,
+      "sample_std": 6.449,
+      "wms_stock": 0,
+      "reorder_point": 116,
+      "target_stock": 290,
+      "reorder_alert": true,
+      "recommended_order_qty": 290,
+      "stock_variance": 0
+    }
+  ],
+  "scenarios": [
+    {
+      "lead_time": 3,
+      "alerts": 1,
+      "proposed_units": 280
+    },
+    {
+      "lead_time": 7,
+      "alerts": 2,
+      "proposed_units": 469
+    },
+    {
+      "lead_time": 10,
+      "alerts": 2,
+      "proposed_units": 479
+    },
+    {
+      "lead_time": 14,
+      "alerts": 5,
+      "proposed_units": 836
+    }
+  ],
+  "regions": [
+    {
+      "warehouse": "Germany",
+      "observations": 1440,
+      "discrepancies": 554,
+      "demand": 17523,
+      "shipped": 17371
+    },
+    {
+      "warehouse": "Hong Kong",
+      "observations": 1440,
+      "discrepancies": 552,
+      "demand": 17470,
+      "shipped": 17316
+    },
+    {
+      "warehouse": "Taiwan",
+      "observations": 1440,
+      "discrepancies": 565,
+      "demand": 17444,
+      "shipped": 17444
+    },
+    {
+      "warehouse": "Malaysia",
+      "observations": 1440,
+      "discrepancies": 574,
+      "demand": 17196,
+      "shipped": 17196
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "reorder_card0",
+  "position": {
+    "x": 360,
+    "y": 20,
+    "z": 0,
+    "height": 90,
+    "width": 292,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "replenishment_recommendations"
+                    }
+                  },
+                  "Property": "Reorder Alerts"
+                }
+              },
+              "queryRef": "replenishment_recommendations.Reorder Alerts",
+              "nativeQueryRef": "Reorder Alerts"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Reorder Alerts'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

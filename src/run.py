@@ -1,4 +1,4 @@
-"""Synthetic warehouse reconciliation and replenishment. Not production advice."""
+"""Synthetic warehouse reconciliation and replenishment analysis."""
 from pathlib import Path
 import random
 import csv
@@ -79,6 +79,9 @@ def build(output, days=120, seed=43, lead_time=7, target_days=21):
     (output / "kpis.json").write_text(json.dumps(kpis, indent=2) + "\n")
     dashboard(output / "dashboard.html", "Smart Warehouse Intelligence", "ERP/WMS reconciliation and replenishment proposals based on the latest 28 days of simulated demand.",
               {"Daily observations": len(rows), "Discrepancies": len(discrepancies), "Demand fulfillment": f"{kpis['unit_fill_rate']:.1%}", "Reorder alerts": kpis["reorder_alerts"]}, recs, "warehouse", "recommended_order_qty")
+    audit_rows = [{**r, "discrepancy_flag": int(r["variance"] != 0)} for r in rows]
+    dashboard(output / "reconciliation.html", "Inventory Reconciliation", "Daily ERP and WMS snapshots with warehouse filters and a searchable discrepancy register.",
+              {"Observations": len(rows), "Discrepancies": len(discrepancies), "Discrepancy rate": f"{len(discrepancies)/len(rows):.2%}", "Lost demand units": sum(r["demand"]-r["shipped"] for r in rows)}, audit_rows, "warehouse", "discrepancy_flag")
     return kpis
 
 
