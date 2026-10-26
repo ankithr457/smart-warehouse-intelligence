@@ -12,3 +12,4 @@ This is an implementation guide, **not an executable .knwf file**.
 8. Add a Line Plot for daily demand and a Bar Chart for discrepancies by warehouse.
 
 Validation: reconcile KNIME counts against Python output, and document any difference. Do not claim this guide as an exported KNIME workflow.
+

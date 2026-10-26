@@ -7,3 +7,4 @@ Demand Fulfillment % = DIVIDE([Total Shipped Units], [Total Demand Units])
 Discrepancy Observations = CALCULATE(COUNTROWS(warehouse_daily), warehouse_daily[variance] <> 0)
 Discrepancy % = DIVIDE([Discrepancy Observations], [Observations])
 // ERP and WMS stock are snapshot quantities. Never sum across dates as inventory balance.
+
