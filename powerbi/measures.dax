@@ -1,0 +1,9 @@
+// Import reports/warehouse_daily.csv from running python src/run.py
+// Table name: warehouse_daily
+Observations = COUNTROWS(warehouse_daily)
+Total Demand Units = SUM(warehouse_daily[demand])
+Total Shipped Units = SUM(warehouse_daily[shipped])
+Demand Fulfillment % = DIVIDE([Total Shipped Units], [Total Demand Units])
+Discrepancy Observations = CALCULATE(COUNTROWS(warehouse_daily), warehouse_daily[variance] <> 0)
+Discrepancy % = DIVIDE([Discrepancy Observations], [Observations])
+// ERP and WMS stock are snapshot quantities. Never sum across dates as inventory balance.
