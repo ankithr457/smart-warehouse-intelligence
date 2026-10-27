@@ -1,3 +1,3 @@
-reportlab>=4.0,<5
-matplotlib>=3.7,<4
-Pillow>=10,<13
+# PDF compilation uses the Python standard library.
+# System requirement: TeX Live or MiKTeX with pdfLaTeX, listings and tabularx.
+# IEEEtran.cls is included under docs/ieee/.

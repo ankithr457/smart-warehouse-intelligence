@@ -1,5 +1,4 @@
 {
-  "release": "2",
   "date": "2026-10-26",
   "python_business_tests": "passed",
   "browser": {
@@ -20,8 +19,10 @@
     "desktop_render_and_dax": "not executed"
   },
   "pdf": {
-    "pages": 14,
-    "visual_review": "passed: all 14 pages rendered and inspected"
+    "pages": 6,
+    "format": "IEEEtran conference, two columns, US Letter",
+    "visual_review": "passed"
   },
-  "automated_tests": 10
+  "automated_tests": 10,
+  "report_review_date": "2026-10-27"
 }

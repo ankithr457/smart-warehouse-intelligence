@@ -4,3 +4,7 @@ __pycache__/
 .DS_Store
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
+*.aux
+*.log
+*.out
+*.synctex.gz

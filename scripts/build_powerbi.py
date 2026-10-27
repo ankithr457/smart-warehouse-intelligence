@@ -54,18 +54,18 @@ for root in [ROOT]:
   for i,n in enumerate(['Reorder Alerts','Proposed Units']):visual(detail,'reorder_card'+str(i),'card',360+i*310,20,292,90,{'Values':[proj(target,n,True)]},n)
  cols=['order_id','warehouse','status','ordered_units','fulfilled_units','shortage_units','delivery_delay_days'] if supply else ['warehouse','sku','wms_stock','reorder_point','target_stock','reorder_alert','recommended_order_qty','stock_variance']
  visual(detail,'detail_table','tableEx',24,150,1230,530,{'Values':[proj(target,c) for c in cols]},'Order register' if supply else 'Replenishment proposals')
- (pbi/'README.md').write_text(f'''# Power BI report source
+ (pbi/'README.md').write_text(f'''# Power BI Report Source
 
 `{name}.pbip` contains two report pages, an import semantic model, typed data, DAX measures and visual definitions. The sample data is embedded in Power Query, so no absolute CSV path or credentials are required.
 
-## Open
+## Open the Report
 Open `{name}.pbip` in a current Windows version of Power BI Desktop with Power BI Project and PBIR support. Refresh the model to load the embedded simulation snapshot. Save as PBIX if a single-file package is needed.
 
-## Report pages
+## Report Pages
 - Operations overview: KPI cards, warehouse slicer and comparative charts.
 - {'Order exceptions: warehouse filter and order-level detail.' if supply else 'Replenishment review: warehouse filter, alert cards and SKU-level proposals.'}
 
-The embedded data matches the committed CSV outputs. Rebuild the source package after changing the simulation data. Report source has been checked against Microsoft JSON schemas and model field references. Power BI Desktop rendering and DAX execution have not been verified in this Linux environment.
+The embedded data matches the committed CSV outputs. Rebuild the source package after changing the simulation data. Report source has been checked against Microsoft JSON schemas and model field references. Power BI Desktop rendering and DAX execution remain outside the completed verification scope.
 ''')
 
  print(root.name,'Power BI source generated')
