@@ -1,9 +1,11 @@
 # Smart Warehouse Intelligence
 
-Inventory reconciliation and SKU-level replenishment analysis across four warehouses, combining daily stock checks with demand-based order proposals.
+Inventory reconciliation and SKU-level replenishment analysis across three warehouses, combining daily stock checks with demand-based order proposals.
 
 **Author:** Ankith Ramesh Babu  
 **Scope:** Independent case study using synthetic operational data
+
+**Locations:** Germany, Czech Republic and India
 
 [IEEE-format Report](reports/project-report.pdf) · [Power BI project](powerbi/Warehouse.pbip) · [Methodology](docs/methodology.md)
 
@@ -11,7 +13,7 @@ Inventory reconciliation and SKU-level replenishment analysis across four wareho
 
 ## Key Results
 
-The baseline contains 5,760 daily observations and 48 warehouse-SKU pairs. It identifies 2,245 ERP/WMS discrepancies, 99.56% demand fulfillment and two final replenishment proposals totaling 469 units. A lead-time sensitivity analysis increases the proposed quantity from 280 units at three days to 836 units at fourteen days.
+The baseline contains 4,320 daily observations and 36 warehouse-SKU pairs. It identifies 1,671 ERP/WMS discrepancies, 99.42% demand fulfillment and two final replenishment proposals totaling 469 units. A lead-time sensitivity analysis increases the proposed quantity from 280 units at three days to 836 units at fourteen days.
 
 These results describe the simulation, not an employer operation or measured business savings.
 

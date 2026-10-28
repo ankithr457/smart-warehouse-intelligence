@@ -1,22 +1,24 @@
 {
-  "date": "2026-10-26",
+  "date": "2026-10-28",
   "python_business_tests": "passed",
   "browser": {
-    "engine": "Chromium via Playwright",
+    "engine": "Chromium 153 via Playwright",
     "checks": [
-      "warehouse filter",
+      "all three warehouse filters",
       "unmatched search",
-      "filtered CSV download",
-      "390px viewport overflow"
+      "filtered CSV contents and complete row count",
+      "390px viewport overflow",
+      "no browser script errors"
     ],
     "result": "passed"
   },
   "powerbi": {
     "schema_documents": 18,
-    "json_schema": "passed",
+    "json_schema": "previously passed; unchanged PBIR definitions, not rerun on 2026-10-28",
     "field_references": "passed",
     "embedded_data_identity": "passed",
-    "desktop_render_and_dax": "not executed"
+    "desktop_render_and_dax": "not executed",
+    "source_recheck_date": "2026-10-28"
   },
   "pdf": {
     "pages": 6,
@@ -24,5 +26,10 @@
     "visual_review": "passed"
   },
   "automated_tests": 10,
-  "report_review_date": "2026-10-27"
+  "report_review_date": "2026-10-28",
+  "locations": [
+    "Germany",
+    "Czech Republic",
+    "India"
+  ]
 }

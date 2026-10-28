@@ -6,7 +6,8 @@ from run import simulate, reorder_point
 
 class TestWarehouse(unittest.TestCase):
     def test_observations(self):
-        self.assertEqual(len(simulate()), 5760)
+        self.assertEqual(len(simulate()), 4320)
+        self.assertEqual({row["warehouse"] for row in simulate()}, {"Germany", "Czech Republic", "India"})
     def test_reorder(self):
         self.assertGreater(reorder_point(12, 4), 84)
     def test_reproducible(self):
@@ -52,7 +53,7 @@ class TestBusinessRules(unittest.TestCase):
             build(output, days=3)
             original = {p.name: p.read_bytes() for p in output.iterdir()}
             with (output/'replenishment_recommendations.csv').open() as f:
-                self.assertEqual(len(list(csv.DictReader(f))), 48)
+                self.assertEqual(len(list(csv.DictReader(f))), 36)
             build(output, days=3)
             self.assertEqual(original, {p.name: p.read_bytes() for p in output.iterdir()})
 
