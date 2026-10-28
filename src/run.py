@@ -9,7 +9,7 @@ import argparse
 from collections import defaultdict
 from reporting import write_csv, dashboard
 
-WAREHOUSES = ("Germany", "Hong Kong", "Taiwan", "Malaysia")
+WAREHOUSES = ("Germany", "Czech Republic", "India")
 
 def simulate(days=120, seed=43):
     if days < 1:

@@ -1,3 +1,5 @@
 # PDF compilation uses the Python standard library.
 # System requirement: TeX Live or MiKTeX with pdfLaTeX, listings and tabularx.
 # IEEEtran.cls is included under docs/ieee/.
+# Chart regeneration uses matplotlib.
+matplotlib>=3.6,<4

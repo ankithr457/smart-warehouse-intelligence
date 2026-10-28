@@ -17,7 +17,7 @@
 \author{\IEEEauthorblockN{Ankith Ramesh Babu}\IEEEauthorblockA{Independent Operations Analytics Project}}
 \maketitle
 \thispagestyle{plain}\pagestyle{plain}
-\begin{abstract}This paper presents a reproducible inventory-reconciliation and replenishment analysis using 5,760 synthetic observations from four warehouses and twelve stock-keeping units over 120 days. Daily ERP and WMS snapshots identify 2,245 discrepancy observations, while demand fulfillment reaches 99.56\%. A separate decision table applies a 28-day demand window, fixed lead time and an illustrative safety-stock rule. Two closing-snapshot proposals total 469 units. Increasing lead time from three to fourteen days changes proposals from 280 to 836 units. Offline dashboards, editable Power BI project source and automated tests support auditability. The work evaluates internally consistent analytical rules, not an executed inventory policy.\end{abstract}
+\begin{abstract}This paper presents a reproducible inventory-reconciliation and replenishment analysis using 4,320 synthetic observations from three warehouses and twelve stock-keeping units over 120 days. Daily ERP and WMS snapshots identify 1,671 discrepancy observations, while demand fulfillment reaches 99.42\%. A separate decision table applies a 28-day demand window, fixed lead time and an illustrative safety-stock rule. Two closing-snapshot proposals total 469 units. Increasing lead time from three to fourteen days changes proposals from 280 to 836 units. Offline dashboards, editable Power BI project source and automated tests support auditability. The work evaluates internally consistent analytical rules, not an executed inventory policy.\end{abstract}
 
 \begin{IEEEkeywords}inventory reconciliation, replenishment, safety stock, warehouse analytics, reproducibility\end{IEEEkeywords}
 
@@ -70,7 +70,7 @@ This is a batch analysis of simulated observations. It does not write to SAP, ex
 
 \section{Data specification and provenance}
 
-All source observations are generated in src/run.py with a fixed random seed \cite{r1}. No customer, supplier or employee data is used. Regional names represent four analytical groups, not actual sites.
+All source observations are generated in src/run.py with a fixed random seed \cite{r1}. No customer, supplier or employee data is used. Regional names represent three analytical groups (Germany, Czech Republic and India), not actual sites.
 
 
 Table~\ref{tab:2} summarizes source fields and definitions.
@@ -83,7 +83,7 @@ Table~\ref{tab:2} summarizes source fields and definitions.
 \hline
 \textbf{Field} & \textbf{Type} & \textbf{Meaning} \\
 \hline
-warehouse + sku + day & Composite key & 4 warehouses x 12 SKUs x 120 days \\
+warehouse + sku + day & Composite key & 3 warehouses x 12 SKUs x 120 days \\
 opening\_stock & Integer & Previous ERP closing stock \\
 received & Integer & Sampled from 0, 0, 0, 0, 30, 50 \\
 demand & Integer & Daily demand sampled from 2 to 22 \\
@@ -157,9 +157,8 @@ Table~\ref{tab:4} summarizes regional baseline results.
 \textbf{Warehouse} & \textbf{Discrepancies} & \textbf{Demand} & \textbf{Shipped} \\
 \hline
 Germany & 554 & 17,523 & 17,371 \\
-Hong Kong & 552 & 17,470 & 17,316 \\
-Taiwan & 565 & 17,444 & 17,444 \\
-Malaysia & 574 & 17,196 & 17,196 \\
+Czech Republic & 552 & 17,470 & 17,316 \\
+India & 565 & 17,444 & 17,444 \\
 \hline
 \end{tabularx}
 \end{table}
@@ -167,7 +166,7 @@ Malaysia & 574 & 17,196 & 17,196 \\
 The dataset contains 306 unfulfilled demand units. High aggregate fulfillment does not remove SKU-level risk: Germany SKU005 ends at zero WMS stock and receives a 290-unit proposal. Germany SKU002 receives 179 units. Both final proposal rows have zero ERP/WMS variance.
 
 
-The 2,245 discrepancy count describes noisy observations across time, not 2,245 distinct damaged items or stock-loss events. Repeated observations of a SKU must not be interpreted as independent physical losses.
+The 1,671 discrepancy count describes noisy observations across time, not 1,671 distinct damaged items or stock-loss events. Repeated observations of a SKU must not be interpreted as independent physical losses.
 
 
 \section{Interactive dashboard overview}
@@ -333,7 +332,7 @@ The default analysis uses the Python standard library. The report is compiled fr
 
 \subsection{Cross-checks}
 
-All 5,760 rows satisfy ERP stock conservation. Shipments never exceed demand or available ERP stock. The 48-row recommendation table contains one latest proposal per warehouse-SKU pair. Recommended quantity is zero whenever the trigger is false.
+All 4,320 rows satisfy ERP stock conservation. Shipments never exceed demand or available ERP stock. The 36-row recommendation table contains one latest proposal per warehouse-SKU pair. Recommended quantity is zero whenever the trigger is false.
 
 
 \subsection{Scope of assurance}
