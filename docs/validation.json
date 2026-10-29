@@ -14,22 +14,31 @@
   },
   "powerbi": {
     "schema_documents": 18,
-    "json_schema": "previously passed; unchanged PBIR definitions, not rerun on 2026-10-28",
+    "json_schema": "passed",
     "field_references": "passed",
     "embedded_data_identity": "passed",
     "desktop_render_and_dax": "not executed",
-    "source_recheck_date": "2026-10-28"
+    "source_recheck_date": "2026-10-28",
+    "schema_recheck_date": "2026-10-28"
   },
   "pdf": {
     "pages": 6,
     "format": "IEEEtran conference, two columns, US Letter",
     "visual_review": "passed"
   },
-  "automated_tests": 10,
+  "automated_tests": 15,
   "report_review_date": "2026-10-28",
   "locations": [
     "Germany",
     "Czech Republic",
     "India"
-  ]
+  ],
+  "independent_sql_and_raw_row_audit": "passed",
+  "renamed_checkout_reproducibility": "passed",
+  "robustness": {
+    "seeds": 100,
+    "invariants": "passed",
+    "evidence": "reports/robustness_check.json"
+  },
+  "four_pass_review": "docs/verification.md"
 }

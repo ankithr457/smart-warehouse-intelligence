@@ -11,11 +11,27 @@ Inventory reconciliation and SKU-level replenishment analysis across three wareh
 
 ![Dashboard overview](reports/figures/dashboard.png)
 
+## Start Here
+
+1. Read the [IEEE technical report](reports/project-report.pdf) for methods, results and screenshots.
+2. Download the repository and open `reports/dashboard.html` for the interactive demonstration.
+3. Read the [four-pass verification](docs/verification.md) and [independent numerical audit](reports/numerical_audit.json) for reproducible evidence.
+
 ## Key Results
 
 The baseline contains 4,320 daily observations and 36 warehouse-SKU pairs. It identifies 1,671 ERP/WMS discrepancies, 99.42% demand fulfillment and two final replenishment proposals totaling 469 units. A lead-time sensitivity analysis increases the proposed quantity from 280 units at three days to 836 units at fourteen days.
 
 These results describe the simulation, not an employer operation or measured business savings.
+
+### How to Interpret the Numbers
+
+| Measure | Calculation | Meaning |
+| --- | --- | --- |
+| Demand fulfillment | 52,131 / 52,437 = 99.42% | 306 demand units remain unfulfilled. |
+| Discrepancy observations | 1,671 / 4,320 = 38.68% | Intentionally injected snapshot noise, not distinct stock-loss events. |
+| Replenishment proposals | 179 + 290 = 469 units | Two closing-stock alerts, both in Germany. |
+
+Expected receipts are 13.33 units per SKU-day versus expected demand of 12, with 120 to 500 opening units. These assumptions explain the high fulfillment. The reorder proposals are not executed in the simulation, so 99.42% is not an improvement caused by the model. Countries use identical generation rules.
 
 ## Project Deliverables
 
@@ -25,7 +41,9 @@ These results describe the simulation, not an employer operation or measured bus
 - [Power BI source](powerbi/README.md): two report pages, visual definitions, typed semantic model and embedded dataset.
 - [Scenario evidence](reports/analysis.json): lead-time sensitivity and regional reconciliation totals.
 - [Data dictionary](docs/data-dictionary.md): row definitions, column meanings and aggregation rules.
-- [Validation record](docs/validation.json): browser and source validation scope.
+- [Verification record](docs/verification.md): four audit passes, findings and remaining validation boundaries.
+- [SQL audit](sql/kpis.sql): independent KPI calculations from raw CSV fields.
+- [Robustness evidence](reports/robustness_check.json): invariant checks across 100 seeds.
 
 ## Reproduce the Analysis
 
@@ -36,6 +54,8 @@ git clone https://github.com/ankithr457/smart-warehouse-intelligence.git
 cd smart-warehouse-intelligence
 python src/run.py
 python scripts/analyze.py
+python scripts/build_powerbi.py
+python scripts/verify_project.py
 python -m unittest discover -s tests -v
 ```
 
@@ -63,7 +83,8 @@ python src/run.py --days 180 --seed 7 --lead-time 10 --target-days 28 --output r
 | --- | --- |
 | `src/` | Simulation, calculations, CSV and HTML generation |
 | `scripts/` | Scenario analysis, Power BI and PDF report authoring |
-| `tests/` | Business rules, edge cases, reproducibility and model checks |
+| `tests/` | Business rules, corruption detection, portable builds and model checks |
+| `sql/` | Independent KPI queries executed by the audit script |
 | `reports/` | Baseline outputs, IEEE-format report and dashboard screenshots |
 | `powerbi/` | PBIP, PBIR, semantic model and DAX measures |
 | `docs/` | Methodology and validation record |

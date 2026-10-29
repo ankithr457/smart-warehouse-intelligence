@@ -1,6 +1,8 @@
-import csv,json,base64,uuid
+import csv,json,base64,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'src'))
+from run import PROJECT_KIND
 BASE='https://developer.microsoft.com/json-schemas/fabric/item/'
 def write(p,d):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(d,indent=2)+'\n')
 def schema(p):return BASE+p+'/schema.json'
@@ -11,7 +13,7 @@ def visual(folder,name,kind,x,y,w,h,roles,title):
  d = {'$schema':schema('report/definition/visualContainer/2.4.0'),'name':name,'position':{'x':x,'y':y,'z':0,'height':h,'width':w,'tabOrder':0},'visual':{'visualType':kind,'query':{'queryState':{k:{'projections':v} for k,v in roles.items()}},'visualContainerObjects':{'title':[{'properties':title_props}]}}}
  write(folder/'visuals'/name/'visual.json',d)
 for root in [ROOT]:
- supply=root.name.startswith('international')
+ supply=PROJECT_KIND == 'supply_chain'
  name='SupplyChain' if supply else 'Warehouse'
  pbi=root/'powerbi';report=pbi/(name+'.Report');model=pbi/(name+'.SemanticModel')
  write(pbi/(name+'.pbip'),{'version':'1.0','artifacts':[{'report':{'path':name+'.Report'}}],'settings':{'enableAutoRecovery':True}})
@@ -22,7 +24,7 @@ for root in [ROOT]:
  for source in sources:
   path=root/'reports'/(source+'.csv');rows=list(csv.DictReader(path.open()));columns=[];types=[]
   for k,v in rows[0].items():
-   dtype='boolean' if v in ['True','False'] else 'int64' if v.lstrip('-').isdigit() else 'double' if v.replace('.','',1).lstrip('-').isdigit() else 'string'
+   dtype = ('boolean' if k in {'blocked', 'on_time_in_full', 'reorder_alert'} else 'string' if k in {'order_id', 'warehouse', 'sku', 'status'} else 'double' if k in {'mean_daily_demand', 'sample_std'} else 'int64')
    columns.append({'name':k,'dataType':dtype,'sourceColumn':k,'summarizeBy':'none'})
    types.append('{"'+k+'", '+{'boolean':'type logical','int64':'Int64.Type','double':'type number','string':'type text'}[dtype]+'}')
   encoded=base64.b64encode(path.read_bytes()).decode()

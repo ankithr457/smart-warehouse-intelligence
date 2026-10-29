@@ -1,0 +1,8 @@
+{
+  "seeds": 100,
+  "result": "passed",
+  "metric": "unit_fill_rate",
+  "minimum": 0.980481,
+  "maximum": 1.0,
+  "mean": 0.994651
+}

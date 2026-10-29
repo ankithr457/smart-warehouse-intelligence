@@ -1,0 +1,37 @@
+{
+  "method": "Independent SQLite KPI aggregation and raw-field recomputation; no imports from implementation",
+  "result": "passed",
+  "locations": [
+    "Czech Republic",
+    "Germany",
+    "India"
+  ],
+  "kpis": {
+    "observations": 4320,
+    "discrepancy_records": 1671,
+    "unit_fill_rate": 0.9942,
+    "reorder_alerts": 2,
+    "recommended_units": 469
+  },
+  "evidence": {
+    "warehouse_sku_pairs": 36,
+    "total_demand": 52437,
+    "total_shipped": 52131,
+    "unfulfilled_units": 306,
+    "discrepancy_rate": 0.386806,
+    "expected_daily_receipts": 13.333333,
+    "expected_daily_demand": 12,
+    "positive_proposals": [
+      {
+        "warehouse": "Germany",
+        "sku": "SKU002",
+        "units": 179
+      },
+      {
+        "warehouse": "Germany",
+        "sku": "SKU005",
+        "units": 290
+      }
+    ]
+  }
+}

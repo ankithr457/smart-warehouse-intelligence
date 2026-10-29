@@ -166,7 +166,9 @@ India & 565 & 17,444 & 17,444 \\
 The dataset contains 306 unfulfilled demand units. High aggregate fulfillment does not remove SKU-level risk: Germany SKU005 ends at zero WMS stock and receives a 290-unit proposal. Germany SKU002 receives 179 units. Both final proposal rows have zero ERP/WMS variance.
 
 
-The 1,671 discrepancy count describes noisy observations across time, not 1,671 distinct damaged items or stock-loss events. Repeated observations of a SKU must not be interpreted as independent physical losses.
+The 1,671 discrepant observations equal 38.68\% of the 4,320 snapshots. The noise rule assigns a nonzero offset in two of five draws, before clipping at zero stock. This is an intentionally noisy reconciliation dataset, not a measured warehouse error rate or 1,671 distinct stock-loss events.
+
+Fulfillment is $52,131/52,437=99.42\%$. Expected receipts are 13.33 units per SKU-day, exceeding expected demand of 12 units, with 120--500 opening units. These generous starting conditions explain the high fill rate. The 469-unit proposals are not executed, so the service level is not an improvement delivered by the reorder model. Country labels do not encode country-specific operating conditions.
 
 
 \section{Interactive dashboard overview}
@@ -307,7 +309,8 @@ Table~\ref{tab:6} summarizes verification evidence.
 \textbf{Check} & \textbf{Evidence} & \textbf{Outcome} \\
 \hline
 Business-rule tests & Stock conservation, reorder examples and invalid inputs & Passed \\
-Repeat generation & Same seed and arguments reproduce identical exports & Passed \\
+Independent SQL & Raw CSV aggregates agree with KPI exports & Passed \\
+Repeat generation & Identical exports in a renamed checkout & Passed \\
 Browser interactions & Warehouse filter, empty search, CSV export, mobile width & Passed \\
 Report source & PBIR JSON schema and model-field linkage checks & Passed \\
 Desktop Power BI & Windows application, refresh and DAX engine & Not executed \\
@@ -322,6 +325,7 @@ Desktop Power BI & Windows application, refresh and DAX engine & Not executed \\
 python src/run.py
 python scripts/analyze.py
 python scripts/build_powerbi.py
+python scripts/verify_project.py
 python -m unittest discover -s tests -v
 \end{lstlisting}
 \end{minipage}
@@ -336,6 +340,8 @@ All 4,320 rows satisfy ERP stock conservation. Shipments never exceed demand or 
 
 
 \subsection{Scope of assurance}
+
+A further 100-seed check preserves stock conservation and proposal invariants at lead times of 0, 3, 7, 14 and 21 days. Demand fulfillment ranges from 98.05\% to 100\%, averaging 99.47\%. These are outcomes of the assumed receipt and demand process, not measured gains.
 
 Passing these checks establishes internal consistency for the stated rules and dataset. It does not establish calibration against a real warehouse, production readiness or economic benefit.
 

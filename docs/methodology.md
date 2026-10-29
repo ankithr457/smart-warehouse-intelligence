@@ -16,3 +16,7 @@ Investigate discrepancies before acting on replenishment proposals. Recommendati
 
 ## Modeling Limitations
 Fixed lead time, independent daily demand and illustrative z=1.65. The factor does not establish achieved service. No open purchase orders, reservations, MOQ, expiry, budget or supplier variation. WMS observations include independent measurement noise. A physical inventory ledger would need reconciliation events. Snapshot stocks must not be summed across dates.
+
+## Numerical Interpretation
+
+The generator injects a nonzero WMS offset on two of five draws before zero-stock clipping. The 38.68% discrepancy observation rate is intentionally noisy. Receipts average 13.33 units per SKU-day while demand averages 12; opening stock also buffers demand. The 99.42% fulfillment is a property of this simulated supply process, not evidence of policy improvement. Country groups share identical assumptions.
