@@ -1,13 +1,14 @@
 """Synthetic warehouse reconciliation and replenishment analysis."""
 from pathlib import Path
 import random
-import csv
 import math
 import statistics
 import json
 import argparse
 from collections import defaultdict
 from reporting import write_csv, dashboard
+
+PROJECT_KIND = "warehouse"
 
 WAREHOUSES = ("Germany", "Czech Republic", "India")
 
